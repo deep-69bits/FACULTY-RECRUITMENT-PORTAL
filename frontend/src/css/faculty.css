@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.cards{
+    display: flexbox;
+    margin: auto;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    
+}
+.card {
+    margin: auto;
+    margin: 1rem;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 30%;
+    height: 60vh;
+
+  }
+  
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+ 
+.container {
+    padding: 2px 16px;
+  }
+.image{
+    width: 100%;
+}
+.btnoncard{
+  border: none;
+  display: block;
+  align-items: center;
+  margin: auto;
+}
+
+.card h3{
+    color: rgb(17, 0, 0);
+    margin: 1rem;
+}
