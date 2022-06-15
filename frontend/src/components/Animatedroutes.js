@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-route
 import {AnimatePresence} from 'framer-motion'
 import Login from './Login';
 import Register from './Register';
-
+import Form from './Form';
 
 export default function Animatedroutes() {
 
@@ -17,7 +17,10 @@ export default function Animatedroutes() {
       <Route path="/apply" element={<Applying  />} />
       <Route path="/login" element={<Login/>} />
       <Route path="/register" element={<Register/>} />
-    </Routes>
+      
+      <Route path="/form" element={<Form/>} />
+      </Routes>
+      
   </Router>
   )
 }
