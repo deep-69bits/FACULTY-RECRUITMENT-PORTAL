@@ -17,10 +17,8 @@ export default function Animatedroutes() {
       <Route path="/apply" element={<Applying  />} />
       <Route path="/login" element={<Login/>} />
       <Route path="/register" element={<Register/>} />
-      
       <Route path="/form" element={<Form/>} />
-      </Routes>
-      
+    </Routes> 
   </Router>
   )
 }
