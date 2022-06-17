@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+#naved{
+    color: black;
+    font-weight: 600;
+    
+    display: flex;
+    background-color: red;
+   
+}
+#naved ul{
+    color: black;
+    display: flex;   
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: blue;
+    margin: auto;
+}
+#naved ul li{
+    color: black;
+    float: left;
+    cursor: pointer;
+    margin: 2rem;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    background-color: aqua;
+
+}
+#information{
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin: auto;
+    width: 75%;
+    height: 140vh;
+    background-color: rgb(249, 255, 241);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 100px 100px 0 rgba(0, 0, 0, 0.24);
+}
+.points{
+    color: black;
+}

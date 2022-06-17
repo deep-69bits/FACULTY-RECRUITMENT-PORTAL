@@ -7,6 +7,7 @@ import {AnimatePresence} from 'framer-motion'
 import Login from './Login';
 import Register from './Register';
 import Form from './Form';
+import Info from './Info';
 
 export default function Animatedroutes() {
 
@@ -18,6 +19,8 @@ export default function Animatedroutes() {
       <Route path="/login" element={<Login/>} />
       <Route path="/register" element={<Register/>} />
       <Route path="/form" element={<Form/>} />
+      <Route path="/info" element={<Info/>} />
+
     </Routes> 
   </Router>
   )

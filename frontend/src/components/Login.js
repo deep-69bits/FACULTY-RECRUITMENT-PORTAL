@@ -27,7 +27,7 @@ const Login = ({ setLoginUser}) => {
       .then(res => {
         alert(res.data.message)
         if(res.data.message==="Login Successfull"){
-          navigate("/form")
+          navigate("/info")
         }
 
         })
