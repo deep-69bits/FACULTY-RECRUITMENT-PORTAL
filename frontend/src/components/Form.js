@@ -1,25 +1,29 @@
 import React,{useState} from 'react'
-import TypewriterComponent from 'typewriter-effect'
-import '../css/form.css'
+import '../css/loginregister.css'
+import { useNavigate } from 'react-router-dom';
+import axios from "axios"
+import { motion } from "framer-motion"
+import "../css/form.css"
 
-export default function Form() {
-    // const [name,setName]=useState(localStorage.getItem('Name'));
-    // const changename = e =>{
-    //     const { name, value } = e.target
-    //     setName(value)
-    //     console.log(value);
-    //     localStorage.setItem('Name',  value);
-    // }
-    const name=localStorage.getItem("Name");
+
+
+const Register = () => {
+
+  
+   
+
   return (
-    <div id='contentbox'>
-    <p id="yourname">
-    <TypewriterComponent onInit={(typewriter) =>{
-      typewriter.typeString("Welcome to our new careers section "+name+"...")
-      .start();
-    }} ></TypewriterComponent>
-    </p>
-     
+    <div id='form'>
+    <h1>Application form</h1>
+      <form action="" placeholder='profile pic'>
+      <input type="file" />
+         <input type="text" placeholder='Post Applied for' />
+          <input type="text" placeholder='Depatment'  />
+          <input type="text" name="" id="" placeholder='' />
+
+       </form>
     </div>
   )
 }
+
+export default Register

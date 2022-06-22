@@ -3,11 +3,25 @@ import '../css/loginregister.css'
 import { useNavigate } from 'react-router-dom';
 import axios from "axios"
 import { motion } from "framer-motion"
+import { GoogleLogin, GoogleLogout } from 'react-google-login';
+
 
 
 
 const Register = () => {
+    const clientId = "648485481702-ehal33fhakluktvv0bq2tmklnsgd4be7.apps.googleusercontent.com";
+    const [showloginButton, setShowloginButton] = useState(true);
+    const [showlogoutButton, setShowlogoutButton] = useState(false);
+    const onLoginSuccess = (res) => {
+        console.log('Login Success:', res.profileObj);
+        setShowloginButton(false);
+        setShowlogoutButton(true);
+        
+    };
 
+    const onLoginFailure = (res) => {
+        console.log('Login Failed:', res);
+    };
   const navigate = useNavigate();
 
   const [ user, setUser] = useState({
@@ -56,6 +70,15 @@ const Register = () => {
           <button className="button" onClick={register}  >Register</button>
           <button className="button" onClick={() => navigate("/login")}>Login</button>
           </div>
+          { showloginButton ?
+            <GoogleLogin
+                clientId={clientId}
+                buttonText="Sign In"
+                onSuccess={onLoginSuccess}
+                onFailure={onLoginFailure}
+                cookiePolicy={'single_host_origin'}
+                isSignedIn={true}
+            /> : null}
       </motion.div>
   )
 }

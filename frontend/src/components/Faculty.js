@@ -9,7 +9,9 @@ import { motion } from 'framer-motion'
 
 var xyz="";
 export default function Faculty(props) {
-    
+     const c ={
+       color: "blue"
+     }
   return (
       <>
       <motion.div className="cards" initial={{width:0}} 
@@ -19,19 +21,18 @@ export default function Faculty(props) {
       <img className='image' src={facultypos} alt="Avatar"/>
       <div class="container">
       <h3><b>Faculty positions</b></h3>
-      <Link to={'/apply'} ><button oncli  className='btnoncard' >Assistant Professors</button></Link>
-      <Link to={'/apply'}><button  className='btnoncard' >Assistant Professors</button></Link>
-      
+      <motion.button  className='btn-1'  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+      <Link   className='link' to={'/apply'}>Apply now</Link>
+      </motion.button>
       </div>
       </div> 
       <div class="card">
       <img className='image' src={visiting} alt="Avatar"/>
       <div class="container">
       <h3><b>Visiting Faculty positions</b></h3>
-      <Link to={'/apply'}><button onClick={()=>{xyz="Visiting Faculty positions: Visiting Faculty positions"}} className='btnoncard' >Assistant Professors</button></Link>
-      <Link to={'/apply'}><button  className='btnoncard' >Assistant Professors</button></Link>
-
-      
+      <motion.button  className='btn-1'  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+      <Link   className='link' to={'/apply'}>Apply now</Link>
+      </motion.button>
 
       </div>
       </div> 
@@ -39,13 +40,16 @@ export default function Faculty(props) {
       <img className='image' src={nonacadmic} alt="Avatar"/>
       <div class="container">
       <h3><b>Non-Acadmic positions</b></h3>
-      <Link to={'/apply'}><button  className='btnoncard' >Assistant Professors</button></Link>
-      <Link to={'/apply'}><button  className='btnoncard' >Assistant Professors</button></Link>
+
+      <motion.button  className='btn-1'  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+      <Link   className='link' to={'/apply'}>Apply now</Link>
+      </motion.button>
+      
       
 
       </div>
       </div> 
-      </motion.div>
+      </motion.div> 
       </>
   )
 }

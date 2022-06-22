@@ -4,6 +4,8 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useNavigate} from "react-router-dom"
 import * as yup from "yup";
 import TypewriterComponent from 'typewriter-effect';
+import { motion } from 'framer-motion'
+
 
 
 export default function Info() {
@@ -19,7 +21,9 @@ export default function Info() {
     }
     const name=localStorage.getItem("Name");
     return (
-        <div id='information'>
+        <motion.div  id="information" initial={{width:0}} 
+        animate={{width:"75%"}} 
+        exit={{ x: window.innerWidth, transition:{duration:0.1} }}>
             <nav id='naved'>
                 <ul >
                     <li>Advertismnet</li>
@@ -77,7 +81,7 @@ export default function Info() {
            </Formik>
 
 
-        </div>
+        </motion.div>
 
     )
 }

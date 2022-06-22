@@ -24,13 +24,21 @@ export default function Applying(props) {
         .start();
       }} ></TypewriterComponent>
       </p>
-      <p id='position'>{xyz}</p>
+      
       </motion.div>
       <div className='buttons'>
-      <Link to='/'><button className='btn-1'>Advertisment</button> </Link>
-      <Link to='/register'> <button className='btn-1'>Apply now</button></Link>
-      <Link to='/'><button className='btn-1'>Benifits </button> </Link>
-       <Link to='/'><button className='btn-2'>Go back </button></Link> 
+      <motion.button className='applycomponentbutton b2'>
+      <Link className='applycomponentlink b2' to='/'>Advertisment</Link>
+      </motion.button>
+      <motion.button className='applycomponentbutton b1'> 
+      <Link to='/register' className='applycomponentlink b1 '> Apply now  </Link>
+      </motion.button>
+       <motion.button className='applycomponentbutton'>
+       <Link to='/' className='applycomponentlink'>Benifits </Link>
+       </motion.button> <br />
+       <motion.button className='gobackbutton'>
+       <Link to='/' className='gobacklink'>Go back</Link> 
+       </motion.button>
       </div>
       </div>
     </motion.div>
