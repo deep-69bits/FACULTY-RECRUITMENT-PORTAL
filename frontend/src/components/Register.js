@@ -25,9 +25,9 @@ const Register = () => {
   const navigate = useNavigate();
 
   const [ user, setUser] = useState({
-      name: "",
-      email:"",
-      phonenumber:"",
+      name: localStorage.getItem('Name'),
+      email:localStorage.getItem('email'),
+      phonenumber:localStorage.getItem('phonenumber'),
       password:"",
       reEnterPassword: ""
   })
@@ -38,7 +38,9 @@ const Register = () => {
           ...user,
           [name]: value
       })
-      localStorage.setItem('Name',user.name);
+        localStorage.setItem('Name',user.name);
+        localStorage.setItem('email',user.email);
+        localStorage.setItem('phonenumber',user.phonenumber);
     }
     
     const register = () => {
