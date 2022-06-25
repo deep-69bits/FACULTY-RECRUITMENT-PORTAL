@@ -20,6 +20,14 @@ const userSchema = new mongoose.Schema({
     phonenumber:String,
     password: String
 })
+const userdataSchema = new mongoose.Schema({
+    name: String,
+    email: String,
+    phonenumber:String,
+    address: String,
+    pincode: String
+})
+const Userdata = new mongoose.model("Userdata", userdataSchema)
 
 const User = new mongoose.model("User", userSchema)
 

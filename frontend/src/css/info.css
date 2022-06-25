@@ -6,29 +6,39 @@
 #naved{
     color: black;
     font-weight: 600;
-    display: flex;
+     
     background-color: rgba(238, 236, 236, 0.95);
+    position: fixed;
+    
+    align-items: center;
+    
+    display: block;
+    float: left;
+    overflow: -1;
+     left: 2.1%;
+     bottom: 0%;
+    
     
    
 }
 #naved ul{
     color: black;
-    display: flex;   
     text-align: center;
     align-items: center;
+    display: block;   
     justify-content: center;
     background-color: rgba(238, 236, 236, 0.95);
     margin: auto;
 }
 #naved ul li{
     color: rgb(226, 215, 215);
-    float: left;
+    width: 200px;
     cursor: pointer;
-    margin: 2rem;
+    margin: 0rem;
     justify-content: center;
     text-align: center;
     align-items: center;
-    background-color: aqua;
+    display: block;
 
 }
 #information{
@@ -37,7 +47,7 @@
     justify-content: center;
     margin: auto;
     width: 75%;
-    height: 250vh;
+    height: 555vh;
     background-color: rgba(247, 247, 247, 0.95);
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 100px 100px 0 rgba(0, 0, 0, 0.24);
     margin-top: 2%;
@@ -51,6 +61,7 @@
     letter-spacing: 0.5px;
     word-spacing: 0.5rem;
     font-size: large;
+    display: inline-block;
 }
 
 .common p{
@@ -110,4 +121,10 @@
     font-weight: 500;
     border-radius: 5px;
 
+}
+#errormeassgae{
+    color: red;
+    display: block;
+    margin: auto;
+    margin-top: 5px;
 }
