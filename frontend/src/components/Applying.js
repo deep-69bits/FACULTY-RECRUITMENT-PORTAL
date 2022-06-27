@@ -20,7 +20,7 @@ export default function Applying(props) {
     <motion.div className='textrun'>
       <p className='runningtext'>
       <TypewriterComponent onInit={(typewriter) =>{
-        typewriter.typeString("IITL Lucknow  invites applications from well qualified Ph.D Degree holders for the following faculty position at the level of Assistant Professor in its various Academic Units and System Architect in Computer Services Centre.")
+        typewriter.typeString("IIIT Lucknow  invites applications from well qualified Ph.D Degree holders for the following faculty position at the level of Assistant Professor in its various Academic Units and System Architect in Computer Services Centre.")
         .start();
       }} ></TypewriterComponent>
       </p>
@@ -34,7 +34,7 @@ export default function Applying(props) {
       <Link to='/register' className='applycomponentlink b1 '> Apply now  </Link>
       </motion.button>
        <motion.button className='applycomponentbutton'>
-       <Link to='/' className='applycomponentlink'>Benifits </Link>
+       <Link to='/' className='applycomponentlink'>Benefits </Link>
        </motion.button> <br />
        <motion.button className='gobackbutton'>
        <Link to='/' className='gobacklink'>Go back</Link> 

@@ -20,7 +20,7 @@ function App() {
     setLoading(true)
      setTimeout(() => {
        setLoading(false)
-     }, 1000);
+     }, 3000);
    }) 
    const override = css`
   display: block;

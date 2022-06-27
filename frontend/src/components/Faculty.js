@@ -29,7 +29,7 @@ export default function Faculty(props) {
       <div class="card">
       <img className='image' src={visiting} alt="Avatar"/>
       <div class="container">
-      <h3><b>Visiting Faculty positions</b></h3>
+      <h3><b>Project positions</b></h3>
       <motion.button  className='btn-1'  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
       <Link   className='link' to={'/apply'}>Apply now</Link>
       </motion.button>
@@ -39,7 +39,7 @@ export default function Faculty(props) {
       <div class="card">
       <img className='image' src={nonacadmic} alt="Avatar"/>
       <div class="container">
-      <h3><b>Non-Acadmic positions</b></h3>
+      <h3><b>Non-Academic positions</b></h3>
 
       <motion.button  className='btn-1'  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
       <Link   className='link' to={'/apply'}>Apply now</Link>

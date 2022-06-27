@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios"
 import { motion } from "framer-motion"
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import { Link } from 'react-router-dom'
+
 
 
 
@@ -63,24 +65,29 @@ const Register = () => {
       <motion.div className="register" initial={{width:0}} 
       animate={{width:"100%"}} 
       exit={{ x: window.innerWidth, transition:{duration:0.1} }}>
-          <input type="text" name="name" value={user.name} placeholder="Your Name" onChange={ handleChange }  ></input>
-          <input type="text" name="email" value={user.email} placeholder="Your Email" onChange={ handleChange }></input>
-          <input type="text" name="phonenumber" value={user.phonenumber} placeholder="Your phone number" onChange={ handleChange }></input>
-          <input type="password" name="password" value={user.password} placeholder="Your Password" onChange={ handleChange }></input>
-          <input type="password" name="reEnterPassword" value={user.reEnterPassword} placeholder="Re-enter Password" onChange={ handleChange }></input>
-          <div className="buttons">
-          <button className="button" onClick={register}  >Register</button>
-          <button className="button" onClick={() => navigate("/login")}>Login</button>
-          </div>
-          { showloginButton ?
-            <GoogleLogin
-                clientId={clientId}
-                buttonText="Sign In"
-                onSuccess={onLoginSuccess}
-                onFailure={onLoginFailure}
-                cookiePolicy={'single_host_origin'}
-                isSignedIn={true}
-            /> : null}
+       <div id='reg'>
+       <h1>SIGN UP</h1>
+       <input type="text" name="name" value={user.name} placeholder="Your Name" onChange={ handleChange }  ></input>
+       <input type="text" name="email" value={user.email} placeholder="Your Email" onChange={ handleChange }></input>
+       <input type="text" name="phonenumber" value={user.phonenumber} placeholder="Your phone number" onChange={ handleChange }></input>
+       <input type="password" name="password" value={user.password} placeholder="Your Password" onChange={ handleChange }></input>
+       <input type="password" name="reEnterPassword" value={user.reEnterPassword} placeholder="Re-enter Password" onChange={ handleChange }></input>
+       <div className="buttons">
+       <motion.button className="button" onClick={register}  whileHover={{ scale: 0.9 }} whileTap={{ scale: 0.8 }} >Register</motion.button>
+       <br />
+       <Link id='loginlink' to='/login'>already have an account?</Link>
+       <br /> <br />
+       </div>
+       { showloginButton ?
+        <GoogleLogin
+        clientId={clientId}
+        buttonText="Sign In"
+        onSuccess={onLoginSuccess}
+        onFailure={onLoginFailure}
+        cookiePolicy={'single_host_origin'}
+        isSignedIn={true}
+        /> : null}
+        </div>
       </motion.div>
   )
 }

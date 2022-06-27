@@ -16,7 +16,7 @@ export default function Runningtext() {
         .typeString("At IIIT Lucknow, we provide the opportunities, challenges and support to live the future of your work now. Explore where we work and opportunities that await you.")
         .pauseFor(3)
         .deleteAll()
-        .typeString("You can select from the following openings below:")
+        .typeString("We wish you a smooth experience ahead!")
         .start();
       }} ></TypewriterComponent>
       </p>

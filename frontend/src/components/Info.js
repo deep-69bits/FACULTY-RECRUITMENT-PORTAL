@@ -27,7 +27,7 @@ export default function Info() {
             <nav id='naved'>
                 <ul >
                     <li>
-                    <Link  className='scrool' to='advertismnet' smooth={true} duration={1000} >Advertismnet</Link>
+                    <Link  className='scrool' to='advertismnet' smooth={true} duration={1000} >Advertisment</Link>
                     </li>
                     <li>
                     <Link className='scrool' to='areaofspecialization' smooth={true} duration={1000} >Specialization</Link>
@@ -48,7 +48,7 @@ export default function Info() {
             <div>
             <h1><p>
                 <TypewriterComponent onInit={(typewriter) => {
-                    typewriter.typeString("Welcome to IIIT Lucknow recurtment portal " + name + "...")
+                    typewriter.typeString("Welcome to IIIT Lucknow recruitment portal " + name + "...")
                         .start();
                 }} ></TypewriterComponent>
             </p></h1>

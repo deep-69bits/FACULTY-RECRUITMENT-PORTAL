@@ -1,6 +1,10 @@
 import express from "express"
 import cors from "cors"
 import mongoose from "mongoose"
+import multer from "multer"
+const upload = multer({ dest: 'uploads/' })
+
+
 
 const app = express()
 app.use(express.json())
@@ -25,7 +29,8 @@ const userdataSchema = new mongoose.Schema({
     email: String,
     phonenumber:String,
     address: String,
-    pincode: String
+    pincode: String,
+    dob: { type: Date, default: Date.now }
 })
 const Userdata = new mongoose.model("Userdata", userdataSchema)
 
@@ -48,7 +53,7 @@ app.post("/login", (req, res)=> {
 }) 
 
 app.post("/register", (req, res)=> {
-    const { name, email, phonenumber ,password} = req.body
+    const { name, email, phonenumber ,password,dob} = req.body
     User.findOne({email: email}, (err, user) => {
         if(user){
             res.send({message: "User already registerd"})
@@ -57,7 +62,8 @@ app.post("/register", (req, res)=> {
                 name,
                 email,
                 phonenumber,
-                password
+                password,
+                dob
             })
             user.save(err => {
                 if(err) {
@@ -70,8 +76,39 @@ app.post("/register", (req, res)=> {
     })
     
 }) 
-
-
+app.post("/userdata", (req, res)=> {
+    const { name, email, phonenumber , address,pincode} = req.body
+    Userdata.findOne({email: email}, (err, user) => {
+        if(user){
+            res.send({message: "User already registerd"})
+        } else {
+            const user = new Userdata({
+                name,
+                email,
+                phonenumber,
+                address,
+                pincode
+            })
+            user.save(err => {
+                if(err) {
+                    res.send(err)
+                } else {
+                    res.send( { message: "Successfully Registered, Please login now." })
+                }
+            })
+        }
+    })
+    
+}) 
+app.post('/images', upload.single('image') ,(req,res)=>{
+    console.log(req.file)
+    if(!req.file){
+        res.send({ code:  500 ,msg: 'err'})
+    }
+    else{
+        res.send({ code: 200,msg: "upoload succesfull yeah"})
+    }
+})
 
 
 app.listen(9000,() => {
