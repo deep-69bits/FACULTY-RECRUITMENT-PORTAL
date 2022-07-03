@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import '../css/loginregister.css'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , Link } from 'react-router-dom';
 import axios from "axios"
 import { motion } from "framer-motion"
 import "../css/form.css"
@@ -10,13 +10,16 @@ import  userpic from  '../photos/blank-profilepic.webp'
 
 
 
+
+
 const Register = () => {
   const [file, setFile] = useState('');
   const [filename, setFilename] = useState('Choose File');
   const [uploadedFile, setUploadedFile] = useState({});  
   const [message, setMessage] = useState('');
   const [uploadPercentage, setUploadPercentage] = useState(0);
-
+  const navigate = useNavigate();
+  
   const [ userdata, setUserdata] = useState({
     name: localStorage.getItem('Name'),
     email:localStorage.getItem('email'),
@@ -45,8 +48,8 @@ const handleChange = e => {
     const [image,setImage]=useState('');
     const [imagePreview, setImagepreview] =useState(null)
     
-
-     const handlechange=(e)=>{
+    
+    const handlechange=(e)=>{
       console.log(e.target.files);
       setImage(e.target.files[0]);
       const selected = e.target.files[0];
@@ -59,6 +62,7 @@ const handleChange = e => {
       axios.post(url,formdata).then((res)=>{
         console.log(res);
       })
+      
       const ALLOWED_TYPES = ["image/png" ,"image/jpeg","image/jpg"];
       if(selected && ALLOWED_TYPES.includes(selected.type)){
         console.log("ok")
@@ -72,57 +76,102 @@ const handleChange = e => {
       else{
         console.log("nope")
       }
-     }
-
-
-
-
-     const handleapi=(e)=>{
-       e.preventDefault();
+    }
+    
+    
+    
+    
+    const handleapi=(e)=>{
+      e.preventDefault();
+      
       const url='http://localhost:9000/images';
       const formdata = new FormData();
       formdata.append('image',image)
       axios.post(url,formdata).then((res)=>{
         console.log(res);
       })
-
-
-     }
-
-
-
       
-  const defaultvalue = {
+      
+    }
+    
+    
+    
+    
+    const defaultvalue = {
       name: "",
       email:""
-  }
-  const validationSchema = yup.object().shape({
+    }
+    const validationSchema = yup.object().shape({
       name: yup.string().required("please enter your name"),
       email: yup.string().required("please enter your email").email("Invalid format")
-  })
-  const onhandlesubmit = (e) =>{
-   
-    console.log("hi");
-  }
-
-  const upload = (e) => {
-    e.preventDefault();
-    const { name, email, phonenumber ,address, pincode} = userdata
-    if( name && email && phonenumber && address && pincode){
+    })
+    const onhandlesubmit = (e) =>{
+      
+      console.log("hi");
+    }
+    
+    const upload = (e) => {
+      e.preventDefault();
+      const { name, email, phonenumber ,address, pincode} = userdata
+      if( name && email && phonenumber && address && pincode){
         axios.post("http://localhost:9000/userdata", userdata)
         .then( res => {
-            alert(res.data.message)
+          SetNext(true);
+          localStorage.setItem('next',true)
+          localStorage.setItem('color','rgb(112, 228, 3)')
+          setcolor('rgb(112, 228, 3)')
+          alert(res.data.message)
+          navigate("/form/acadmics")
         })
-    } else {
+      } else {
         alert("invlid input")
+      }
     }
+   
 
-}
-
+    const check = (e)=>{
+      e.preventDefault();
+      const { name, email, phonenumber ,address, pincode} = userdata
+      if( name && email && phonenumber && address && pincode){
+        axios.post("http://localhost:9000/finduser", userdata)
+        .then( res => {
+          if(res.data.message==="user found"){
+            SetNext(true);
+             localStorage.setItem('color','rgb(112, 228, 3)')
+             setcolor('rgb(112, 228, 3)')
+          }
+          else {
+            localStorage.setItem('color','red')
+            setcolor('red');
+            SetNext(false);
+          localStorage.setItem('next',false)
+            
+          }
+        })
+      } else {
+        localStorage.setItem('color','red')
+        setcolor('red');
+        SetNext(false);
+          localStorage.setItem('next',false)
+        
+      }
+      
+    }
+    const [color,setcolor] =useState(localStorage.getItem('color'))
+    const [next,SetNext] =useState(localStorage.getItem('next'));
 
   
   return (
-    <div id='form'>
+    <div id='form' onLoad={check} onloadend={check} >
+    <nav>
+    <ul>
+    <li><Link   style=  {{backgroundColor:  color }} className='qq q1' to='/form/personaldetails'>Personal details</Link></li>
+    <li><Link className='qq' to= {next ? '/form/acadmics' : '/form/personaldetails' }>Acadmic details</Link></li>
+    <li><Link className='qq' to='/form/experiencedetails'>Experience details</Link></li>
+    <li><Link className='qq' to='/form/acadmics'>Publications details</Link></li>
+    <li><Link className='qq' to='/form/acadmics'>Refree details</Link></li>
+    </ul>
+    </nav>
     <h1>Application form</h1>
     <br />
     <div id='sectionA' >
@@ -143,7 +192,7 @@ const handleChange = e => {
     <input type="text" name="name" value={userdata.name} placeholder="Your Name" onChange={ handleChange }  ></input>
     </div>
     <div>
-    <label htmlFor="dob">Date of birth:
+    <label htmlFor="dob">Date Of Birth:
     <input type="date" name="dob" value={userdata.dob} placeholder="Your birthdate" onChange={ handleChange }  ></input>
     </label>
     </div>
@@ -154,7 +203,7 @@ const handleChange = e => {
     </div>
     <div>
     <label htmlFor="email">Email:
-    <input type="email" name="email" value={userdata.email} placeholder="Your email" onChange={ handleChange }  ></input>
+    <input type="email" disabled name="email" value={userdata.email} placeholder="Your email" onChange={ handleChange }  ></input>
     </label>
     </div>
     <div>

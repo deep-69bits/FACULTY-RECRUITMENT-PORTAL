@@ -24,6 +24,7 @@ const userSchema = new mongoose.Schema({
     phonenumber:String,
     password: String
 })
+
 const userdataSchema = new mongoose.Schema({
     name: String,
     email: String,
@@ -32,8 +33,18 @@ const userdataSchema = new mongoose.Schema({
     pincode: String,
     dob: { type: Date, default: Date.now }
 })
-const Userdata = new mongoose.model("Userdata", userdataSchema)
+const acadmicdata = new mongoose.Schema({
+    name: String,
+    email: String,
+    degree:String,
+    yearofcompition: String,
+    marks: String,
+    subject: String,
+    university:String
+})
 
+const Userdata = new mongoose.model("Userdata", userdataSchema)
+const Acadmicdata=  new mongoose.model("Acadmicdata", acadmicdata)
 const User = new mongoose.model("User", userSchema)
 
 //Routes
@@ -51,6 +62,8 @@ app.post("/login", (req, res)=> {
         }
     })
 }) 
+
+
 
 app.post("/register", (req, res)=> {
     const { name, email, phonenumber ,password,dob} = req.body
@@ -76,6 +89,21 @@ app.post("/register", (req, res)=> {
     })
     
 }) 
+
+
+app.post("/finduser", (req, res)=> {
+    const { name, email, phonenumber , address,pincode} = req.body
+    Userdata.findOne({ email: email}, (err, user) => {
+        if(user){
+             res.send({message: "user found"})
+        } else {
+            res.send({message: "User not registered"})
+        }
+    })
+}) 
+
+
+
 app.post("/userdata", (req, res)=> {
     const { name, email, phonenumber , address,pincode} = req.body
     Userdata.findOne({email: email}, (err, user) => {
@@ -100,6 +128,36 @@ app.post("/userdata", (req, res)=> {
     })
     
 }) 
+
+
+app.post("/acadmicdetails", (req, res)=> {
+    const { name, email, degree , yearofcompition,marks,subject,university} = req.body
+    Acadmicdata.findOne({email: email}, (err, user) => {
+        if(user){
+            res.send({message: "User already registerd"})
+        } else {
+            const user = new Acadmicdata({
+                name,
+                email,
+                degree,
+                yearofcompition,
+                marks,
+                subject,
+                university
+            })
+            user.save(err => {
+                if(err) {
+                    res.send(err)
+                } else {
+                    res.send( { message: "Successfully Registered, Please login now." })
+                }
+            })
+        }
+    })
+}) 
+
+
+
 app.post('/images', upload.single('image') ,(req,res)=>{
     console.log(req.file)
     if(!req.file){
@@ -109,6 +167,8 @@ app.post('/images', upload.single('image') ,(req,res)=>{
         res.send({ code: 200,msg: "upoload succesfull yeah"})
     }
 })
+
+
 
 
 app.listen(9000,() => {

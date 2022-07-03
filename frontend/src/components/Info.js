@@ -17,7 +17,7 @@ export default function Info() {
         conditions: yup.boolean().oneOf([true], "please accept conditions")
     })
     const handleonsubmit = () => {
-        navigate("/form")
+        navigate("/form/personaldetails")
     }
     const name = localStorage.getItem("Name");
     return (
