@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import { useNavigate , Link } from 'react-router-dom';
 
 
-export default function Experiencedetails() {
+export default function Publicationsdetails() {
   return (
     <div id='form'>
     <nav>
@@ -14,30 +14,13 @@ export default function Experiencedetails() {
     <li><Link className='qq' to='/form/acadmics'>Refree details</Link></li>
     </ul>
     </nav>
+    <h2>t
+    Publication</h2>
     <div>
-     <h1>Employment History</h1>
-     <div>
-     <label htmlFor="">Summary: <input type="text" /></label>
-     </div>
-     <h1>Teaching Experiencce</h1>
-     <div>
-     <label htmlFor="">Summary: <input type="text" /></label>
-     </div>
-     <h1>Project Experience</h1>
-     <div>
-     <label htmlFor="">Summary: <input type="text" /></label>
-     </div>
-     <h1>Industrial Experience</h1>
-     <div>
-     <label htmlFor="">Summary: <input type="text" /></label>
-     </div>
-     <h1>Administrative Experience</h1>
-     <div>
-     <label htmlFor="">Summary: <input type="text" /></label>
-     </div>
-      
+    <label htmlFor="">
+    Jounral Publication <input type="text" />
+    </label>
     </div>
-     
     </div>
   )
 }

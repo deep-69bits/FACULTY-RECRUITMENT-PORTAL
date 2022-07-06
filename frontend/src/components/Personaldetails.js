@@ -76,6 +76,28 @@ const handleChange = e => {
       else{
         console.log("nope")
       }
+      
+      const inpfile =document.getElementById("inpfile");
+      const image = document.getElementById("image");
+      const preview = image.querySelector(".preview")
+      inpfile.addEventListener("load",function(){
+        const file = localStorage.getItem("imagepre");
+       
+        console.log(file);
+         if(file){
+          const reader =new FileReader();
+          
+           preview.style.display="block";
+  
+         reader.addEventListener("load",function(){
+              console.log(file);
+              preview.setAttribute("src",this.result);
+           })
+           reader.readAsDataURL(file);
+         }
+      });
+
+
     }
     
     
@@ -159,7 +181,53 @@ const handleChange = e => {
     }
     const [color,setcolor] =useState(localStorage.getItem('color'))
     const [next,SetNext] =useState(localStorage.getItem('next'));
+ 
+   const [imagepre,setImagepre]=useState(localStorage.getItem("imagepre"));
+  
+    const checkimage=()=>{
+      const inpfile =document.getElementById("inpfile");
+      const image = document.getElementById("image");
+      const preview = image.querySelector(".preview")
+      inpfile.addEventListener("load",function(){
+        const file = localStorage.getItem("imagepre");
+         if(file){
+          const reader =new FileReader();
+          
+           preview.style.display="block";
+  
+         reader.addEventListener("load",function(){
+              console.log(file);
+              preview.setAttribute("src",this.result);
+           })
+           reader.readAsDataURL(file);
+         }
+      });
+      
+    }
 
+    const changeimg=()=>{
+      console.log("ok ")
+      const inpfile =document.getElementById("inpfile");
+      const image = document.getElementById("image");
+      const preview = image.querySelector(".preview")
+      
+      inpfile.addEventListener("change",function(){
+        const file = this.files[0];
+        setImagepre(file);
+        console.log(file);
+         if(file){
+          const reader =new FileReader();
+          
+           preview.style.display="block";
+  
+         reader.addEventListener("load",function(){
+              console.log(file);
+              preview.setAttribute("src",this.result);
+           })
+           reader.readAsDataURL(file);
+         }
+      });
+    }
   
   return (
     <div id='form' onLoad={check} onloadend={check} >
@@ -168,7 +236,7 @@ const handleChange = e => {
     <li><Link   style=  {{backgroundColor:  color }} className='qq q1' to='/form/personaldetails'>Personal details</Link></li>
     <li><Link className='qq' to= {next ? '/form/acadmics' : '/form/personaldetails' }>Acadmic details</Link></li>
     <li><Link className='qq' to='/form/experiencedetails'>Experience details</Link></li>
-    <li><Link className='qq' to='/form/acadmics'>Publications details</Link></li>
+    <li><Link className='qq' to='/form/publicationdetails'>Publications details</Link></li>
     <li><Link className='qq' to='/form/acadmics'>Refree details</Link></li>
     </ul>
     </nav>
@@ -178,11 +246,17 @@ const handleChange = e => {
     <form action="" onSubmit={handleapi}>
     <h1>Section A</h1>
     <br />
-    <img src={userpic} alt="" id='userpic' />
+
+    <div id="image" >
+    <img src={userpic}  alt="preview"  class="preview" id='imagepic'/>
+    </div>
+    <input type="file" id="inpfile" name="inpfile" placeholder="select file" onChange={changeimg} onLoad={checkimage} />
+    
+   
     <div id='imagediv'>
     <label htmlFor="filetag">
     <i class="fa fa-2x fa-camera"></i>
-    <input type="file" placeholder='profile pic' id='filetag'  onChange={handlechange} />
+    <input type="file" placeholder='profile pic' id='filetag'  onChange={handlechange}  />
     </label>
     </div>
     <button type='submit' onClick={handleapi}> upload</button>

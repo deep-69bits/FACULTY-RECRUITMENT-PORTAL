@@ -103,3 +103,12 @@ nav ul li:hover{
     color: white;
     padding: 1rem;
 }
+#imagepic{
+    width: 300px;
+    border-radius: 1000px;
+    margin: auto;
+}
+#image{
+    border-radius: 50%;
+    
+}
