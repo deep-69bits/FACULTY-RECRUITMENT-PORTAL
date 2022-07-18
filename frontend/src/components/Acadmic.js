@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import { useNavigate , Link } from 'react-router-dom';
 import axios from "axios"
+import "../css/acadmic.css"
 
 
 
@@ -49,44 +50,54 @@ const uploadacadmicdetails = (e) => {
     <div id='form' >
     <nav>
     <ul>
-    <li><Link style=  {{backgroundColor:  'rgb(112, 228, 3)',color: 'white'}}  className='qq' to='/form/personaldetails'>Personal details</Link></li>
+    <li><Link style=  {{backgroundColor:  '#028A0F',color: 'white',padding: '10px'}}  className='qq' to='/form/personaldetails'>Personal details</Link></li>
     <li><Link className='qq' to=  '/form/acadmics' >Acadmic details</Link></li>
     <li><Link className='qq' to='/form/experiencedetails'>Experience details</Link></li>
     <li><Link className='qq' to='/form/publicationdetails'>Publications details</Link></li>
-    <li><Link className='qq' to='/form/acadmics'>Refree details</Link></li>
+    <li><Link className='qq' to='/form/documents'>Refree details</Link></li>
     </ul>
     </nav>
-     <div >
+    <br />
+    <h1>Acadmic Details</h1>
+     <div id='sectionA'>
      <div>
      <label htmlFor="name">Name:
      </label>
-     <input type="text" name="name" value={acadmicdata.name} placeholder="Your Name" disabled onChange={ handleChange }  ></input>
+     <input type="text" name="name"  value={acadmicdata.name} placeholder="Your Name" disabled onChange={ handleChange }  ></input>
      </div>
      <div>
      <label htmlFor="email">Email:
      <input type="email" disabled name="email" value={acadmicdata.email} placeholder="Your email"   onChange={ handleChange }  ></input>
      </label>
      </div>
-
-       <label htmlFor="degree"> Degree: 
-       <input type="text" name='degree' value={acadmicdata.degree} onChange={ handleChange } />
-       </label>
-
-       <label htmlFor="yearofcompition"> Year of Compition: 
-       <input type="text"  name='yearofcompition' value={acadmicdata.yearofcompition} onChange={ handleChange } />
-       </label>
-
-       <label htmlFor="marks"> %Marks: 
-       <input type="text" name='marks' value={acadmicdata.marks} onChange={ handleChange }/>
-       </label>
-
-       <label htmlFor="subject"> Subject or Area of speacilization: 
-       <input type="text" name='subject' value={acadmicdata.subject} onChange={ handleChange } />
-       </label>
-       <label htmlFor="university"> University: 
-       <input type="text" name='university' value={acadmicdata.university}  onChange={ handleChange }/>
-       </label>
-       <button type='submit'  onClick={uploadacadmicdetails}> submit</button>
+        <div>
+        <label htmlFor="degree"> Degree: 
+        <input type="text" name='degree' value={acadmicdata.degree} onChange={ handleChange } />
+        </label>
+        </div>
+        <div>
+        <label htmlFor="yearofcompition"> Year of Compition: 
+        <input type="text"  name='yearofcompition' value={acadmicdata.yearofcompition} onChange={ handleChange } />
+        </label>
+        </div>
+        <div>
+        <label htmlFor="marks"> %Marks: 
+        <input type="text" name='marks' value={acadmicdata.marks} onChange={ handleChange }/>
+        </label>
+        </div>
+  <div>
+  <div>
+  <label htmlFor="subject"> Subject or Area of speacilization: 
+  <input type="text" name='subject' value={acadmicdata.subject} onChange={ handleChange } />
+  </label>
+  </div>
+  </div>
+  <div>
+  <label htmlFor="university"> University: 
+  <input type="text" name='university' value={acadmicdata.university}  onChange={ handleChange }/>
+  </label>
+  </div>
+       <button type='submit' id='btn1'  onClick={uploadacadmicdetails}> submit</button>
      </div>
     </div>
   )

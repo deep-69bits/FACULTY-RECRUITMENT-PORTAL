@@ -140,8 +140,8 @@ const handleChange = e => {
         .then( res => {
           SetNext(true);
           localStorage.setItem('next',true)
-          localStorage.setItem('color','rgb(112, 228, 3)')
-          setcolor('rgb(112, 228, 3)')
+          localStorage.setItem('color','#028A0F')
+          setcolor('#028A0F')
           alert(res.data.message)
           navigate("/form/acadmics")
         })
@@ -159,8 +159,8 @@ const handleChange = e => {
         .then( res => {
           if(res.data.message==="user found"){
             SetNext(true);
-             localStorage.setItem('color','rgb(112, 228, 3)')
-             setcolor('rgb(112, 228, 3)')
+             localStorage.setItem('color','#028A0F')
+             setcolor('#028A0F')
           }
           else {
             localStorage.setItem('color','red')
@@ -185,6 +185,7 @@ const handleChange = e => {
    const [imagepre,setImagepre]=useState(localStorage.getItem("imagepre"));
   
     const checkimage=()=>{
+
       const inpfile =document.getElementById("inpfile");
       const image = document.getElementById("image");
       const preview = image.querySelector(".preview")
@@ -197,23 +198,26 @@ const handleChange = e => {
   
          reader.addEventListener("load",function(){
               console.log(file);
-              preview.setAttribute("src",this.result);
+              preview.setAttribute("src",localStorage.getItem("imagepre"));
            })
            reader.readAsDataURL(file);
          }
       });
       
+
     }
 
     const changeimg=()=>{
+
       console.log("ok ")
       const inpfile =document.getElementById("inpfile");
       const image = document.getElementById("image");
       const preview = image.querySelector(".preview")
       
-      inpfile.addEventListener("change",function(){
-        const file = this.files[0];
+      inpfile.addEventListener("change",function(e){
+        const file = e.target.files[0];
         setImagepre(file);
+        localStorage.setItem("imagepre",file.name)
         console.log(file);
          if(file){
           const reader =new FileReader();
@@ -237,21 +241,24 @@ const handleChange = e => {
     <li><Link className='qq' to= {next ? '/form/acadmics' : '/form/personaldetails' }>Acadmic details</Link></li>
     <li><Link className='qq' to='/form/experiencedetails'>Experience details</Link></li>
     <li><Link className='qq' to='/form/publicationdetails'>Publications details</Link></li>
-    <li><Link className='qq' to='/form/acadmics'>Refree details</Link></li>
+    <li><Link className='qq' to='/form/documents'>Refree details</Link></li>
     </ul>
     </nav>
-    <h1>Application form</h1>
+    <br />
+    <h1>Personal Details</h1>
     <br />
     <div id='sectionA' >
     <form action="" onSubmit={handleapi}>
-    <h1>Section A</h1>
+    
     <br />
+
 
     <div id="image" >
     <img src={userpic}  alt="preview"  class="preview" id='imagepic'/>
     </div>
     <input type="file" id="inpfile" name="inpfile" placeholder="select file" onChange={changeimg} onLoad={checkimage} />
     
+
    
     <div id='imagediv'>
     <label htmlFor="filetag">
@@ -296,7 +303,7 @@ const handleChange = e => {
     </label>
     </div>
     
-    <button type='submit'  onClick={upload} onSubmit={handleapi}> submit</button>
+    <button id='btn1' type='submit'  onClick={upload} onSubmit={handleapi}> submit</button>
     </form>
     </div>
        

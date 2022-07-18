@@ -42,7 +42,16 @@ const acadmicdata = new mongoose.Schema({
     subject: String,
     university:String
 })
+const experienedata = new mongoose.Schema({
+    name: String,
+    email: String,
+    employment:String,
+    teaching: String,
+    project: String,
+    administrative: String
+})
 
+const Experiencedata = new mongoose.model("Experiencedata ", experienedata)
 const Userdata = new mongoose.model("Userdata", userdataSchema)
 const Acadmicdata=  new mongoose.model("Acadmicdata", acadmicdata)
 const User = new mongoose.model("User", userSchema)
@@ -155,6 +164,32 @@ app.post("/acadmicdetails", (req, res)=> {
         }
     })
 }) 
+app.post("/experiencedetails", (req, res)=> {
+    const { name, email, employment, teaching ,project,administrative} = req.body
+    Experiencedata.findOne({email: email}, (err, user) => {
+        if(user){
+            res.send({message: "User already registerd"})
+        } else {
+            const user = new Experiencedata({
+                name,
+                email,
+                employment,
+                teaching,
+                project,
+                administrative
+            })
+            user.save(err => {
+                if(err) {
+                    res.send(err)
+                } else {
+                    res.send( { message: "Successfully Registered, Please login now." })
+                }
+            })
+        }
+    })
+    
+}) 
+
 
 
 

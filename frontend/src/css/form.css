@@ -110,5 +110,18 @@ nav ul li:hover{
 }
 #image{
     border-radius: 50%;
-    
+}
+#btn1{
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 30%;
+    margin: auto;
+    text-align: center;
+    align-items: center;
+    border-radius: 100px;
+    padding: 0.6%;
+  background-color: #000000;
+  color: white;
+  border-style: none;
 }

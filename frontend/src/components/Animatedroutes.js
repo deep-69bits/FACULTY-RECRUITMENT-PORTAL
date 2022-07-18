@@ -13,7 +13,9 @@ import Acadmic from './Acadmic';
 import Experiencedetails from './Experiencedetails';
 import Publicationsdetails from './Publicationsdetails';
 import Example from './Example';
-
+import Advertisment from './Advertisment';
+import Benefits from './Benefits';
+import Documents from './Documents';
 export default function Animatedroutes() {
 
   return (
@@ -31,6 +33,10 @@ export default function Animatedroutes() {
       <Route path="/form/experiencedetails" element={<Experiencedetails/>} />
       <Route path="/form/publicationdetails" element={<Publicationsdetails/>} />
       <Route path="/example" element={<Example/>} />
+      <Route path="/advertisment" element={<Advertisment/>} />
+      <Route path="/benefits" element={<Benefits/>} />
+      <Route path="/form/documents" element={<Documents/>} />
+
 
     </Routes> 
   </Router>

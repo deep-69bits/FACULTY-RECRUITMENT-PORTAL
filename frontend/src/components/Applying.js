@@ -6,7 +6,7 @@ import interview from '../photos/interview.jpg'
 import { Link } from 'react-router-dom'
 import Login from './Login'
 import Faculty,{xyz} from './Faculty'
-import Advertisment from '../pdfs/Notice-for-Faculty-Positions.pdf'
+
 
 
 
@@ -29,13 +29,13 @@ export default function Applying(props) {
       </motion.div>
       <div className='buttons'>
       <motion.button className='applycomponentbutton b2'>
-      <Link className='applycomponentlink b2' to='../pdfs/Notice-for-Faculty-Positions.pdf'>Advertisment</Link>
+      <Link className='applycomponentlink b2' to='/advertisment'>Advertisment</Link>
       </motion.button>
       <motion.button className='applycomponentbutton b1'> 
       <Link to='/register' className='applycomponentlink b1 '> Apply now  </Link>
       </motion.button>
        <motion.button className='applycomponentbutton'>
-       <Link to='/' className='applycomponentlink'>Benefits </Link>
+       <Link to='/benefits' className='applycomponentlink'>Benefits </Link>
        </motion.button> <br />
        <motion.button className='gobackbutton'>
        <Link to='/' className='gobacklink'>Go back</Link> 

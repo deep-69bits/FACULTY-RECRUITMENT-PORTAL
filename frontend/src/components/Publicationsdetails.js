@@ -11,12 +11,14 @@ export default function Publicationsdetails() {
     <li><Link className='qq' to=  '/form/acadmics' >Acadmic details</Link></li>
     <li><Link className='qq' to='/form/experiencedetails'>Experience details</Link></li>
     <li><Link className='qq' to='/form/publicationdetails'>Publications details</Link></li>
-    <li><Link className='qq' to='/form/acadmics'>Refree details</Link></li>
+    <li><Link className='qq' to='/form/documents'>Refree details</Link></li>
     </ul>
     </nav>
-    <h2>t
-    Publication</h2>
-    <div>
+    <br />
+    <h1>
+    Publication details</h1>
+
+    <div id='sectionA'>
     <label htmlFor="">
     Jounral Publication <input type="text" />
     </label>
