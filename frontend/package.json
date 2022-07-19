@@ -13,6 +13,8 @@
     "formik": "^2.2.9",
     "framer-motion": "^6.3.10",
     "gapi-script": "^1.2.0",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
     "nodemon": "^2.0.16",
     "pdfjs-dist": "^2.6.347",
     "react": "^18.2.0",

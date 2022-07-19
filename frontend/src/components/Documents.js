@@ -9,23 +9,26 @@ import {
 import { storage } from "./firebase";
 import { v4 } from "uuid";
 import { useNavigate , Link } from 'react-router-dom';
-
+import '../css/document.css'
+import { Navigate } from 'react-router-dom';
 
 
 export default function Documents() {
-
+    
+  const navigate = useNavigate();
     const [imageUpload, setImageUpload] = useState(null);
   const [imageUrls, setImageUrls] = useState([]);
-
-  const imagesListRef = ref(storage, "images/");
+   const email =localStorage.getItem('email');
+  const imagesListRef = ref(storage, `${email}/`);
   const uploadFile = () => {
     if (imageUpload == null) return;
-    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
+    const imageRef = ref(storage, `${email}/${imageUpload.name + v4()}`);
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
         setImageUrls((prev) => [...prev, url]);
       });
     });
+
   };
 
   useEffect(() => {
@@ -50,16 +53,23 @@ export default function Documents() {
     </ul>
     </nav>
     <br />
+    <div id='resume'>
+    <h1>Upload Resume </h1>
+    <div>
     <input
-      type="file"
-      onChange={(event) => {
-        setImageUpload(event.target.files[0]);
-      }}
+    type="file"
+    onChange={(event) => {
+      setImageUpload(event.target.files[0]);
+    }}
     />
     <button onClick={uploadFile}> Upload Image</button>
+    </div>
     {imageUrls.map((url) => {
-      return <img src={url} />;
+      return <img id='op' src={url} />;
     })}
+    </div>
+    <h1>hi</h1>
+    <Link to='/pdf'>click</Link>
   </div>
   )
 }

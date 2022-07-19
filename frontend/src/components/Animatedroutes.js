@@ -16,6 +16,7 @@ import Example from './Example';
 import Advertisment from './Advertisment';
 import Benefits from './Benefits';
 import Documents from './Documents';
+import Downloadpdf from './Downloadpdf';
 export default function Animatedroutes() {
 
   return (
@@ -36,6 +37,8 @@ export default function Animatedroutes() {
       <Route path="/advertisment" element={<Advertisment/>} />
       <Route path="/benefits" element={<Benefits/>} />
       <Route path="/form/documents" element={<Documents/>} />
+      <Route path="/pdf" element={<Downloadpdf/>} />
+      
 
 
     </Routes> 

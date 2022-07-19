@@ -37,6 +37,7 @@ const Login = ({ setLoginUser}) => {
           ...user,
           [name]: value
       })
+      localStorage.setItem('email',user.email);
   }
 
   const login = () => {
