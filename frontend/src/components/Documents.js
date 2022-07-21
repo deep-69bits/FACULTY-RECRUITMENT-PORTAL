@@ -20,15 +20,16 @@ export default function Documents() {
   const [imageUrls, setImageUrls] = useState([]);
    const email =localStorage.getItem('email');
   const imagesListRef = ref(storage, `${email}/`);
+  
   const uploadFile = () => {
     if (imageUpload == null) return;
-    const imageRef = ref(storage, `${email}/${imageUpload.name + v4()}`);
+    const imageRef = ref(storage, `${email}/${"resume"}`);
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
         setImageUrls((prev) => [...prev, url]);
       });
     });
-
+     window.location.reload();
   };
 
   useEffect(() => {

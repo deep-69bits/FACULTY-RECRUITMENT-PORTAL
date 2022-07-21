@@ -125,3 +125,11 @@ nav ul li:hover{
   color: white;
   border-style: none;
 }
+#imgage{
+    width: 30%;
+    max-height: 20vh;
+    display: inline-block; position: relative; width: 200px; height: 200px; overflow: hidden; border-radius: 50%; 
+    border-top-left-radius: 50% 50%; border-top-right-radius: 50% 50%; border-bottom-right-radius: 50% 50%; border-bottom-left-radius: 50% 50%;
+}
+#imag{
+    display: inline-block; position: relative; width: 300px; height: 200px; overflow: hidden; border-radius: 50%; } 

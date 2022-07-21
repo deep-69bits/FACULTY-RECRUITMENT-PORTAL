@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import '../css/loginregister.css'
 import { useNavigate , Link } from 'react-router-dom';
 import axios from "axios"
@@ -7,6 +7,15 @@ import "../css/form.css"
 import * as yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import  userpic from  '../photos/blank-profilepic.webp'
+import Avatar from "@mui/material/Avatar";
+import { storage } from "./firebase";
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  listAll,
+  list,
+} from "firebase/storage";
 
 
 
@@ -45,92 +54,7 @@ const handleChange = e => {
     localStorage.setItem('gender',userdata.gender);
 
 }
-    const [image,setImage]=useState('');
-    const [imagePreview, setImagepreview] =useState(null)
-    
-    
-    const handlechange=(e)=>{
-      console.log(e.target.files);
-      setImage(e.target.files[0]);
-      const selected = e.target.files[0];
-      console.log(selected);
-      localStorage.setItem('profilepic',selected.name)
-      e.preventDefault();
-      const url='http://localhost:9000/images';
-      const formdata = new FormData();
-      formdata.append('image',image)
-      axios.post(url,formdata).then((res)=>{
-        console.log(res);
-      })
-      
-      const ALLOWED_TYPES = ["image/png" ,"image/jpeg","image/jpg"];
-      if(selected && ALLOWED_TYPES.includes(selected.type)){
-        console.log("ok")
-        let reader = new FileReader();
-        reader.onloadend=()=>{
-          setImagepreview(selected);
-        }
-        reader.readAsDataURL(selected);
-        console.log(selected)
-      }
-      else{
-        console.log("nope")
-      }
-      
-      const inpfile =document.getElementById("inpfile");
-      const image = document.getElementById("image");
-      const preview = image.querySelector(".preview")
-      inpfile.addEventListener("load",function(){
-        const file = localStorage.getItem("imagepre");
-       
-        console.log(file);
-         if(file){
-          const reader =new FileReader();
-          
-           preview.style.display="block";
-  
-         reader.addEventListener("load",function(){
-              console.log(file);
-              preview.setAttribute("src",this.result);
-           })
-           reader.readAsDataURL(file);
-         }
-      });
 
-
-    }
-    
-    
-    
-    
-    const handleapi=(e)=>{
-      e.preventDefault();
-      
-      const url='http://localhost:9000/images';
-      const formdata = new FormData();
-      formdata.append('image',image)
-      axios.post(url,formdata).then((res)=>{
-        console.log(res);
-      })
-      
-      
-    }
-    
-    
-    
-    
-    const defaultvalue = {
-      name: "",
-      email:""
-    }
-    const validationSchema = yup.object().shape({
-      name: yup.string().required("please enter your name"),
-      email: yup.string().required("please enter your email").email("Invalid format")
-    })
-    const onhandlesubmit = (e) =>{
-      
-      console.log("hi");
-    }
     
     const upload = (e) => {
       e.preventDefault();
@@ -184,54 +108,35 @@ const handleChange = e => {
  
    const [imagepre,setImagepre]=useState(localStorage.getItem("imagepre"));
   
-    const checkimage=()=>{
 
-      const inpfile =document.getElementById("inpfile");
-      const image = document.getElementById("image");
-      const preview = image.querySelector(".preview")
-      inpfile.addEventListener("load",function(){
-        const file = localStorage.getItem("imagepre");
-         if(file){
-          const reader =new FileReader();
-          
-           preview.style.display="block";
+
+    const [imageUpload, setImageUpload] = useState(null);
+const [imageUrls, setImageUrls] = useState([]);
+ const email =localStorage.getItem('email');
+const imagesListRef = ref(storage, `profile/${email}/`);
+
+const uploadFile = (e) => {
+  e.preventDefault();
+  if (imageUpload == null) return;
+  const imageRef = ref(storage, `profile/${email}/pic`);
+  uploadBytes(imageRef, imageUpload).then((snapshot) => {
+    getDownloadURL(snapshot.ref).then((url) => {
+      setImageUrls((prev) => [...prev, url]);
+    });
+  });
   
-         reader.addEventListener("load",function(){
-              console.log(file);
-              preview.setAttribute("src",localStorage.getItem("imagepre"));
-           })
-           reader.readAsDataURL(file);
-         }
+};
+
+useEffect(() => {
+  listAll(imagesListRef).then((response) => {
+    response.items.forEach((item) => {
+      getDownloadURL(item).then((url) => {
+        setImageUrls((prev) => [...prev, url]);
       });
-      
+    });
+  });
+}, []);
 
-    }
-
-    const changeimg=()=>{
-
-      console.log("ok ")
-      const inpfile =document.getElementById("inpfile");
-      const image = document.getElementById("image");
-      const preview = image.querySelector(".preview")
-      
-      inpfile.addEventListener("change",function(e){
-        const file = e.target.files[0];
-        setImagepre(file);
-        localStorage.setItem("imagepre",file.name)
-        console.log(file);
-         if(file){
-          const reader =new FileReader();
-          
-           preview.style.display="block";
-  
-         reader.addEventListener("load",function(){
-              console.log(file);
-              preview.setAttribute("src",this.result);
-           })
-           reader.readAsDataURL(file);
-         }
-      });
-    }
   
   return (
     <div id='form' onLoad={check} onloadend={check} >
@@ -248,25 +153,29 @@ const handleChange = e => {
     <h1>Personal Details</h1>
     <br />
     <div id='sectionA' >
-    <form action="" onSubmit={handleapi}>
+    <form action="" >
     
     <br />
-
-
-    <div id="image" >
-    <img src={userpic}  alt="preview"  class="preview" id='imagepic'/>
-    </div>
-    <input type="file" id="inpfile" name="inpfile" placeholder="select file" onChange={changeimg} onLoad={checkimage} />
     
-
-   
-    <div id='imagediv'>
-    <label htmlFor="filetag">
-    <i class="fa fa-2x fa-camera"></i>
-    <input type="file" placeholder='profile pic' id='filetag'  onChange={handlechange}  />
-    </label>
+    <div>
+ 
+    <div id='imag'>
+    {imageUrls.map((url) => {
+      return <img id='imgage' src={url} />;
+    })}
     </div>
-    <button type='submit' onClick={handleapi}> upload</button>
+    <div>
+    <input
+    type="file"
+    onChange={(event) => {
+      setImageUpload(event.target.files[0]);
+    }}
+    />
+    </div>
+    <button onClick={uploadFile} id='btn1'> Upload Image</button></div>
+
+    <br />
+    
     <div>
     <label htmlFor="name">Name:
     </label>
@@ -303,7 +212,7 @@ const handleChange = e => {
     </label>
     </div>
     
-    <button id='btn1' type='submit'  onClick={upload} onSubmit={handleapi}> submit</button>
+    <button id='btn1' type='submit'  onClick={upload} > submit</button>
     </form>
     </div>
        
