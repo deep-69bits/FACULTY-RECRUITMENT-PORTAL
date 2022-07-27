@@ -29,7 +29,7 @@ export default function Documents() {
         setImageUrls((prev) => [...prev, url]);
       });
     });
-     window.location.reload();
+    //  window.location.reload();
   };
 
   useEffect(() => {
@@ -46,31 +46,35 @@ export default function Documents() {
     <div className="App" id='form'>
     <nav>
     <ul>
-    <li><Link style=  {{backgroundColor:  'rgb(112, 228, 3)',color: 'white'}}  className='qq' to='/form/personaldetails'>Personal details</Link></li>
+    <li><Link   className='qq' to='/form/personaldetails'>Personal details</Link></li>
     <li><Link className='qq' to=  '/form/acadmics' >Acadmic details</Link></li>
     <li><Link className='qq' to='/form/experiencedetails'>Experience details</Link></li>
     <li><Link className='qq' to='/form/publicationdetails'>Publications details</Link></li>
-    <li><Link className='qq' to='/form/acadmics'>Refree details</Link></li>
+    <li><Link className='qq' to=''>Refree details</Link></li>
     </ul>
     </nav>
     <br />
     <div id='resume'>
     <h1>Upload Resume </h1>
     <div>
-    <input
+    <br />
+    {imageUrls.map((url) => {
+      return <img id='op' src={url} />;
+    })}
+    <div>
+    <input id='res'
     type="file"
     onChange={(event) => {
       setImageUpload(event.target.files[0]);
     }}
     />
-    <button onClick={uploadFile}> Upload Image</button>
+      </div>
+    <button onClick={uploadFile} id='btn1'> Upload Image</button>
     </div>
-    {imageUrls.map((url) => {
-      return <img id='op' src={url} />;
-    })}
     </div>
-    <h1>hi</h1>
-    <Link to='/pdf'>click</Link>
+    <br />
+
+    <button id='btn1'  > <Link to='/pdf'  id='linked' >Download pdf</Link> </button>
   </div>
   )
 }

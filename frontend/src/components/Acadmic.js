@@ -50,7 +50,7 @@ const uploadacadmicdetails = (e) => {
     <div id='form' >
     <nav>
     <ul>
-    <li><Link style=  {{backgroundColor:  '#028A0F',color: 'white',padding: '10px'}}  className='qq' to='/form/personaldetails'>Personal details</Link></li>
+    <li><Link   className='qq' to='/form/personaldetails'>Personal details</Link></li>
     <li><Link className='qq' to=  '/form/acadmics' >Acadmic details</Link></li>
     <li><Link className='qq' to='/form/experiencedetails'>Experience details</Link></li>
     <li><Link className='qq' to='/form/publicationdetails'>Publications details</Link></li>

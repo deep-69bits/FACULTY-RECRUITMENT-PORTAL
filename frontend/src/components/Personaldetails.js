@@ -142,8 +142,9 @@ useEffect(() => {
     <div id='form' onLoad={check} onloadend={check} >
     <nav>
     <ul>
-    <li><Link   style=  {{backgroundColor:  color }} className='qq q1' to='/form/personaldetails'>Personal details</Link></li>
-    <li><Link className='qq' to= {next ? '/form/acadmics' : '/form/personaldetails' }>Acadmic details</Link></li>
+      
+    <li><Link   className='qq ' to='/form/personaldetails'>Personal details</Link></li>
+    <li><Link className='qq' to= {next ? '/form/acadmics' : '/form/acadmics' }>Acadmic details</Link></li>
     <li><Link className='qq' to='/form/experiencedetails'>Experience details</Link></li>
     <li><Link className='qq' to='/form/publicationdetails'>Publications details</Link></li>
     <li><Link className='qq' to='/form/documents'>Refree details</Link></li>
@@ -165,9 +166,10 @@ useEffect(() => {
     })}
     </div>
     <div>
-    <input
+    <input 
     type="file"
     onChange={(event) => {
+      
       setImageUpload(event.target.files[0]);
     }}
     />
