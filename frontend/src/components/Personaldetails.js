@@ -149,7 +149,7 @@ useEffect(() => {
 
   
   return (
-    <motion.div id='form' style={{height: "140vh"}} onLoad={check} onloadend={check}  initial={{ width: 0 }}
+    <motion.div id='form'  onLoad={check} onloadend={check}  initial={{ width: 0 }}
     animate={{ width: "75%" }}
     exit={{ x: window.innerWidth, transition: { duration: 0.1 } }} >
     <nav>
@@ -257,13 +257,13 @@ useEffect(() => {
        <label htmlFor="address">PWD:</label>
        </td>
        <td>
-       <input type="text" name="address"  placeholder="Your address" onChange={ handleChange }  ></input>
+       <input type="text"  placeholder="Yes/No" onChange={ handleChange }  ></input>
        </td>
        <td>
        <label htmlFor="address">Ex-Serviceman:</label>
        </td>
        <td>
-       <input type="text" name="address"  placeholder="Your address" onChange={ handleChange }  ></input>
+       <input type="text"   placeholder="Yes/no" onChange={ handleChange }  ></input>
        </td>
        </tr>
 

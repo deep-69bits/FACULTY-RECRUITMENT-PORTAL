@@ -6,7 +6,7 @@ import '../css/form.css'
 
 export default function Publicationsdetails() {
   return (
-    <motion.div id='form' style={{height: "110vh"}} initial={{ width: 0 }}
+    <motion.div id='form' initial={{ width: 0 }}
     animate={{ width: "75%" }}
     exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}>
     <nav>

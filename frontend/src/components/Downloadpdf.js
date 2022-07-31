@@ -72,7 +72,11 @@ export default function Downloadpdf() {
   return (
     <div id='form' style={{height:"150vh"}}>
     <div id='pdf' >
-    
+    <br />
+       <h1>Indian Institute of Information Technology, Lucknow</h1>
+       <br />
+       <h2>Faculty Recruitment Form</h2>
+       <br />
      <table>
      <tbody>
      <tr>
@@ -89,6 +93,62 @@ export default function Downloadpdf() {
      <input type="text" name="name" value={localStorage.getItem('Name')} placeholder="Your Name"  ></input>
      </td>
      </tr>
+     <tr>
+     <td>
+     <label htmlFor="dob">Date Of Birth:</label>
+     </td>
+     <td>
+     <input type="date" disabled name="dob" value={localStorage.getItem('dob')} placeholder="Your birthdate"  ></input>
+     </td>
+     <td>
+     <label htmlFor="dob">gender:</label>
+     </td>
+     <input type="text" disabled name="gender" value={localStorage.getItem('gender')} placeholder="Your birthdate"  ></input>
+     <td>
+     </td>
+     </tr>
+     <tr>
+     <td>
+     <label htmlFor="dob">caste:</label>
+     </td>
+     <td>
+     <input type="text" disabled name="caste" value={localStorage.getItem('caste')} placeholder="Your birthdate"  ></input>
+     </td>
+     <td>
+     <label htmlFor="dob">gender:</label>
+     </td>
+     <input type="text" disabled name="caste" value={localStorage.getItem('subcaste')} placeholder="Your birthdate"  ></input>
+     <td>
+     </td>
+     </tr>
+     <tr>
+     <td>
+     <label htmlFor="dob">Email:</label>
+     </td>
+     <td>
+     <input type="text" disabled name="email" value={localStorage.getItem('email')} placeholder="Your birthdate"  ></input>
+     </td>
+     <td>
+     <label htmlFor="dob">Phone Number:</label>
+     </td>
+     <input type="text" disabled name="phonenumber" value={localStorage.getItem('phonenumber')} placeholder="Your phone number"  ></input>
+     <td>
+     </td>
+     </tr>
+     <tr>
+     <td>
+     <label htmlFor="dob">Address:</label>
+     </td>
+     <td>
+     <input type="text" disabled name="address" value={localStorage.getItem('address')} placeholder="Your birthdate"  ></input>
+     </td>
+     <td>
+     <label htmlFor="dob">Pincode:</label>
+     </td>
+     <input type="text" disabled name="phonenumber" value={localStorage.getItem('pincode')} placeholder="Your phone number"  ></input>
+     <td>
+     </td>
+     </tr>
       
       
      </tbody>
@@ -98,15 +158,12 @@ export default function Downloadpdf() {
     
     
     
-    <label htmlFor="dob">Date Of Birth:
-    <input type="date" disabled name="dob" value={localStorage.getItem('dob')} placeholder="Your birthdate"  ></input>
-    </label>
     
     
 
 
     </div>
-    <button onClick={generatepdf}>print</button>
+    <button id='btn1' onClick={generatepdf}>Download</button>
     </div>
   )
 }

@@ -5,7 +5,7 @@
 }
 #form{
 
-    height: 260vh;
+    
     width: 80%;
     margin:  auto;
     text-align: center;
@@ -281,3 +281,40 @@ input[type="radio"]:checked + label {
 #ptag{
     font-size: 1rem;
 }
+@media only screen and (max-width: 1700px) {
+
+    #sectionA  table tr td{
+        display: block;
+        margin: auto;
+
+
+    }
+    #sectionA  table tr {
+        display: flexbox;
+        margin: auto;
+        
+    }
+    #sectionA  table tr th{
+        display: block;
+        margin: auto;
+
+    }
+    #sectionA  table input{
+        max-width: 100%;
+        height: 50px;
+        margin: 1rem;
+        padding: 1rem 1.5rem;
+        border: none;
+        border-radius: 12px;
+        outline: 0px solid #5181e022;
+        color: #5181e0;
+        background-color: #fff;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: .875rem;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 10px #5181e011;
+        appearance: none;
+        transition: 50ms;
+    }
+    
+  }

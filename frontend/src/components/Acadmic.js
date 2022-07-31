@@ -114,7 +114,7 @@ const uploadacadmicdetails = (e) => {
       
    }
   return (
-    <motion.div style={{height: "160vh"}} id='form' initial={{ width: 0 }}
+    <motion.div  id='form' initial={{ width: 0 }}
     animate={{ width: "75%" }}
     exit={{ x: window.innerWidth, transition: { duration: 0.1 } }} >
     <nav>
