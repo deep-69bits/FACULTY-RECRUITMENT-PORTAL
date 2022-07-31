@@ -17,6 +17,7 @@ import Advertisment from './Advertisment';
 import Benefits from './Benefits';
 import Documents from './Documents';
 import Downloadpdf from './Downloadpdf';
+import Fromsubmitted from './Fromsubmitted';
 export default function Animatedroutes() {
 
   return (
@@ -38,6 +39,7 @@ export default function Animatedroutes() {
       <Route path="/benefits" element={<Benefits/>} />
       <Route path="/form/documents" element={<Documents/>} />
       <Route path="/pdf" element={<Downloadpdf/>} />
+      <Route path="/formsubmitted" element={<Fromsubmitted/>} />
       
 
 

@@ -2,6 +2,7 @@ import express from "express"
 import cors from "cors"
 import mongoose from "mongoose"
 import multer from "multer"
+import nodemailer from 'nodemailer'
 const upload = multer({ dest: 'uploads/' })
 
 
@@ -27,34 +28,66 @@ const userSchema = new mongoose.Schema({
 
 const userdataSchema = new mongoose.Schema({
     name: String,
+    post: String,
     email: String,
+    aadharcard:String,
+    caste:String,
+    subcaste: String,
     phonenumber:String,
     address: String,
     pincode: String,
-    dob: { type: Date, default: Date.now }
+    dob: { type: Date, default: Date.now },
+    gender:String
 })
 const acadmicdata = new mongoose.Schema({
     name: String,
     email: String,
-    degree:String,
-    yearofcompition: String,
-    marks: String,
-    subject: String,
-    university:String
+    school10:String,
+    board10:String,
+    percentage10:String,
+    subject10:String,
+    yearofpassing10:String,
+    school12:String,
+    board12:String,
+    percentage12:String,
+    subject12:String,
+    yearofpassing12:String,
+    collegebtech:String,
+    cgpabtech:String,
+    subjectbtech:String,
+    yearofpassingbtech:String,
+    collegemtech:String,
+    cgpamtech:String,
+    subjectmtech:String,
+    yearofpassingmtech:String
 })
 const experienedata = new mongoose.Schema({
     name: String,
     email: String,
-    employment:String,
-    teaching: String,
-    project: String,
-    administrative: String
+    designation:String,
+    organization:String,
+    department:String,
+    from:{ type: Date, default: Date.now },
+    to:{ type: Date, default: Date.now },
+    roles:String,
+    emoluments:String,
+    employmentsummary:String,
+    teachingsummary:String,
+    projectsummary:String,
+    industrialsummary:String,
+    administrativesummary:String
 })
+const  usersubmitted = new mongoose.Schema({
+   
+    email: String
+})
+
 
 const Experiencedata = new mongoose.model("Experiencedata ", experienedata)
 const Userdata = new mongoose.model("Userdata", userdataSchema)
 const Acadmicdata=  new mongoose.model("Acadmicdata", acadmicdata)
 const User = new mongoose.model("User", userSchema)
+const Usersubmited = new mongoose.model("Usersubmited", usersubmitted)
 
 //Routes
 app.post("/login", (req, res)=> {
@@ -101,7 +134,7 @@ app.post("/register", (req, res)=> {
 
 
 app.post("/finduser", (req, res)=> {
-    const { name, email, phonenumber , address,pincode} = req.body
+    const { email   } = req.body
     Userdata.findOne({ email: email}, (err, user) => {
         if(user){
              res.send({message: "user found"})
@@ -111,20 +144,45 @@ app.post("/finduser", (req, res)=> {
     })
 }) 
 
+var transporter =nodemailer.createTransport({
+    service: 'gmail',
+    auth:{
+        user: 'deepvein1991@gmail.com',
+        pass: 'testself'
+    }
+});
+
+app.post("/finduser2", (req, res)=> {
+    const { email   } = req.body
+    Usersubmited.findOne({ email: email}, (err, user) => {
+        if(user){
+             res.send({message: "user found"})
+        } else {
+            res.send({message: "User not found"})
+        }
+    })
+}) 
+
 
 
 app.post("/userdata", (req, res)=> {
-    const { name, email, phonenumber , address,pincode} = req.body
+    const { name, post, email, aadharcard,caste,subcaste, phonenumber , address,pincode,dob,gender} = req.body
     Userdata.findOne({email: email}, (err, user) => {
         if(user){
             res.send({message: "User already registerd"})
         } else {
             const user = new Userdata({
                 name,
+                post,
                 email,
+                aadharcard,
+                caste,
+                subcaste,
                 phonenumber,
                 address,
-                pincode
+                pincode,
+                dob,
+                gender
             })
             user.save(err => {
                 if(err) {
@@ -137,22 +195,51 @@ app.post("/userdata", (req, res)=> {
     })
     
 }) 
-
+app.post("/userdatasubmitted", (req, res)=> {
+    const {  email } = req.body
+    Usersubmited.findOne({email: email}, (err, user) => {
+        if(user){
+            res.send({message: "User already registerd" , id:user.id})
+        } else {
+              
+             
+            const user = new Usersubmited({
+                email
+            })
+            user.save(err => {
+                if(err) {
+                    res.send(err)
+                } else {
+                    Usersubmited.findOne({'email':email},function(err,data){
+                        if(err){
+                            console.log(err);
+                        }
+                        else{
+                            res.send( { message: "form filled completely" ,id: data.id })
+                            console.log(data.id);
+                        }
+                    })
+                }
+            })
+        }
+    })
+    
+}) 
 
 app.post("/acadmicdetails", (req, res)=> {
-    const { name, email, degree , yearofcompition,marks,subject,university} = req.body
+    const { name, email, school10, board10,percentage10,subject10,yearofpassing10
+        ,school12,board12,percentage12,subject12,yearofpassing12,
+        collegebtech,cgpabtech,subjectbtech,yearofpassingbtech,
+        collegemtech,cgpamtech,subjectmtech,yearofpassingmtech } = req.body
     Acadmicdata.findOne({email: email}, (err, user) => {
         if(user){
             res.send({message: "User already registerd"})
         } else {
             const user = new Acadmicdata({
-                name,
-                email,
-                degree,
-                yearofcompition,
-                marks,
-                subject,
-                university
+                name, email, school10, board10,percentage10,subject10,yearofpassing10
+                ,school12,board12,percentage12,subject12,yearofpassing12,
+                collegebtech,cgpabtech,subjectbtech,yearofpassingbtech,
+                collegemtech,cgpamtech,subjectmtech,yearofpassingmtech
             })
             user.save(err => {
                 if(err) {
@@ -165,18 +252,15 @@ app.post("/acadmicdetails", (req, res)=> {
     })
 }) 
 app.post("/experiencedetails", (req, res)=> {
-    const { name, email, employment, teaching ,project,administrative} = req.body
+    const { name, email, designation,organization,department,from,to,roles,emoluments,employmentsummary
+        ,teachingsummary,projectsummary,industrialsummary,administrativesummary  } = req.body
     Experiencedata.findOne({email: email}, (err, user) => {
         if(user){
             res.send({message: "User already registerd"})
         } else {
             const user = new Experiencedata({
-                name,
-                email,
-                employment,
-                teaching,
-                project,
-                administrative
+                name, email, designation,organization,department,from,to,roles,emoluments,employmentsummary
+                ,teachingsummary,projectsummary,industrialsummary,administrativesummary
             })
             user.save(err => {
                 if(err) {

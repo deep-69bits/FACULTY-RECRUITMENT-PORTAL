@@ -15,7 +15,7 @@ export default function Footer() {
       <h3>Quick Links</h3>
       <div className="border1"></div> 
         <ul>
-          <a href="#"><li>Home</li></a>
+          <a href=""><li>Home</li></a>
           <a href="#"><li>Search</li></a>
           <a href="#"><li>Contact</li></a>
           <a href="#"><li>About</li></a>

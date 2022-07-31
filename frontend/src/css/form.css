@@ -5,7 +5,7 @@
 }
 #form{
 
-    height: 160vh;
+    height: 260vh;
     width: 80%;
     margin:  auto;
     text-align: center;
@@ -13,6 +13,7 @@
     background-color: rgba(247, 247, 247, 0.95);
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 100px 100px 0 rgba(0, 0, 0, 0.24);
     margin-top: 2%;
+    margin-bottom: 100px;
     
 }
 #userpic{
@@ -29,11 +30,24 @@ label{
     color: rgb(66, 66, 66);
     text-align: left;
 }
-
+.lol input{
+    max-width: 500px;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 12px;
+    outline: 0px solid #5181e022;
+    color: #5181e0;
+    background-color: #fff;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: .875rem;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 10px #5181e011;
+    appearance: none;
+    transition: 50ms;
+    display: block;   
+}
 #sectionA input{
-    max-width: 300px;
-      height: 50px;
-      margin: 1rem;
+    max-width: 500px;
       padding: 1rem 1.5rem;
       border: none;
       border-radius: 12px;
@@ -46,6 +60,7 @@ label{
       box-shadow: 0 4px 10px #5181e011;
       appearance: none;
       transition: 50ms;
+      display: block;
 }
 #sectionA{
     padding: 1rem 2rem;
@@ -133,3 +148,136 @@ nav ul li:hover{
 }
 #imag{
     display: inline-block; position: relative; width: 300px; height: 200px; overflow: hidden; border-radius: 50%; } 
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+        td{
+            font-size: 1.1rem;
+        }
+        #sectionA  table input{
+            max-width: 200px;
+            height: 50px;
+            margin: 1rem;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 12px;
+            outline: 0px solid #5181e022;
+            color: #5181e0;
+            background-color: #fff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: .875rem;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px #5181e011;
+            appearance: none;
+            transition: 50ms;
+        }
+        th {
+          padding: 12px 15px;
+          border: 1px solid #ddd;
+          text-align: center;
+          font-size: 16px;
+        }
+      
+        th {
+            height: 5vh;
+          background-color: darkblue;
+          color: #ffffff;
+        }
+      
+        tbody  tr:nth-child(even) {
+            background-color: #f5f5f5;
+          
+        }
+      
+      
+      /*responsive*/
+      
+      @media (max-width: 500px) {
+        .table thead {
+          display: none;
+        }
+      
+        .table,
+        .table tbody,
+        .table tr,
+        .table td {
+          display: block;
+          width: 100%;
+        }
+        .table tr {
+          margin-bottom: 15px;
+        }
+        .table td {
+          text-align: right;
+          padding-left: 50%;
+          text-align: right;
+          position: relative;
+        }
+        .table td::before {
+          content: attr(data-label);
+          position: absolute;
+          left: 0;
+          width: 50%;
+          padding-left: 15px;
+          font-size: 15px;
+          font-weight: bold;
+          text-align: left;
+        }
+      }
+#summary{
+    width: 100%;
+    margin: auto;
+    align-items: center;
+    text-align: center;
+    height: 15vh;
+    margin-top: 10px;
+}
+
+
+
+
+.radio_container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: darkblue;
+    width: 580px;
+    height: 80px;
+    border-radius: 9999px;
+    box-shadow: inset 0.5px 0.5px 2px 0 rgba(0, 0, 0, 0.15);
+    text-align: center;
+    margin: auto;
+}
+
+input[type="radio"] {
+    appearance: none;
+    display: none;
+}
+
+label {
+    font-family: "Open Sans", sans-serif;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: inherit;
+    width: 400px;
+    height: 60px;
+    text-align: center;
+    border-radius: 9999px;
+    overflow: hidden;
+    transition: linear 0.3s;
+    color: black;
+}
+
+input[type="radio"]:checked + label {
+    background-color: white;
+    color: darkblue;
+    font-weight: 900;
+    transition: 0.3s;
+}
+#ptag{
+    font-size: 1rem;
+}

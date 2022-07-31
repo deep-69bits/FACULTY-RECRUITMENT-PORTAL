@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,{useState}from 'react'
 import '../css/info.css'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useNavigate } from "react-router-dom"
@@ -6,6 +6,8 @@ import * as yup from "yup";
 import TypewriterComponent from 'typewriter-effect';
 import { motion } from 'framer-motion'
 import { Link } from 'react-scroll';
+import axios from "axios"
+
 
 
 export default function Info() {
@@ -13,11 +15,31 @@ export default function Info() {
     const defaultvalue = {
         conditions: false
     }
+     
+    const [ checkmodel, setcheckmodel] = useState({
+       
+        email:localStorage.getItem('email')
+        
+    })
     const validationSchema = yup.object().shape({
         conditions: yup.boolean().oneOf([true], "please accept conditions")
     })
     const handleonsubmit = () => {
-        navigate("/form/personaldetails")
+        console.log("ok");
+        const { email} = checkmodel
+    if(email){
+    axios.post("http://localhost:9000/finduser2",checkmodel)
+    .then( res => {  
+      if(res.data.message==="User not found"){
+          navigate("/form/personaldetails")
+      }
+      else{
+        navigate("/formsubmitted")
+      }
+    })
+  } else {
+    alert("invlid input")
+  }
     }
     const name = localStorage.getItem("Name");
     return (

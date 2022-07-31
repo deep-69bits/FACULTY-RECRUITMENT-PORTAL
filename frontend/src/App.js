@@ -10,7 +10,9 @@ import Applying from './components/Applying';
 import Animatedroutes from './components/Animatedroutes';
 import Footer from './components/Footer';
 import ClipLoader from "react-spinners/ClipLoader";
+import ClockLoader from "react-spinners/ClockLoader";
 import { css } from "@emotion/react";
+
 
  
 
@@ -32,21 +34,23 @@ function App() {
 
    
   return (
-    <>
-     {
-       loading ? 
-       <ClipLoader color={"123abc"} loading={loading} css={override} size={150} />
-       :
+    <div>
+    {
+      loading ? 
+     
+      <ClockLoader css={override} size={200} color={"#123abc"} loading={loading} />
+      :
       <>
-       <Head/> 
-       <Runningtext/>
-       <Animatedroutes/>
-       <Footer/>
-       </>
-      }
+      <Head/> 
+      <Runningtext/>
+      <Animatedroutes/>
+      <Footer/>
+      </>
+    }
     
+    </div>
     
-    </>
+      
    
     
   );
